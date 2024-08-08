@@ -57,14 +57,15 @@ class MateriController extends Controller
     {
         $validate = Validator::make($request->all(),[
             'title' => 'required',
+            'class_level_id'  => 'required | numeric',
             'body'  => 'required',
-            'class_level_id'  => 'required',
         ]);
 
         if($validate->fails())
         {
-            return back()->withErrors($validate)->withInput();
+            return redirect()->back()->withErrors($validate)->withInput()->with(['error' => 'kolom tidak boleh kosong!']);
         }
+
         Material::create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
@@ -87,7 +88,6 @@ class MateriController extends Controller
     public function update(Request $request, $id)
     {
         $editMateri = Material::findOrFail($id);
-        $classLevels = ClassLevel::all();
 
         $validate = Validator::make($request->all(),[
             'title' => 'required',
@@ -97,10 +97,17 @@ class MateriController extends Controller
 
         if($validate->fails())
         {
-            return back()->withErrors($validate)->input();
+            return redirect()->back()->withErrors($validate)->withInput()->with(['error', 'kolom tidak boleh kosong!']);
         }
 
-        return view('dashboard.editMateri', compact('editMateri', 'classLevels'));
+        $editMateri->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'class_level_id' => $request->class_level_id,
+            'body' => $request->body,
+        ]);
+
+        return redirect('dashboard/list')->with(['success' => 'data berhasil di update']);
 
     }
 

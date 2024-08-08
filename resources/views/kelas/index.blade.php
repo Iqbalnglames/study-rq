@@ -2,9 +2,9 @@
 
 @section('content')
     <div style="background-image: url('{{ asset('images/class-bg.jpg') }}'); " class="h-screen bg-cover z-0 relative">
-        <div class="bg-black h-screen bg-opacity-60">
+        <div class="bg-black h-screen bg-opacity-60 overflow-scroll">
             <h1 class="text-center text-2xl font-bold py-4 text-white">Pilih kelas</h1>
-            <div class="grid grid-cols-3 gap-y-10 mb-10 place-items-center">
+            <div class="grid grid-cols-1 lg:px-0 lg:grid-cols-3 gap-y-10 mb-10 place-items-center">
                 @for($i = 7; $i <= 12; $i++)
                 <a href="/kelas-{{$i}}">
                     <div class="flex hover:bg-gray-100 bg-white flex-col w-52 h-56 shadow-xl items-center rounded-md border border-gray-200">

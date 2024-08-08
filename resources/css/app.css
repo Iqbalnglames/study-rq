@@ -5,3 +5,8 @@
 html {
     font-family: "Quicksand", sans-serif;
 }
+.slide-in-left{
+    animation:slide-in-left .6s cubic-bezier(.25,.46,.45,.94) infinite both;
+}
+
+@keyframes slide-in-left{0%{transform:translateX(-500px);opacity:1}100%{transform:translateX(500px);opacity:1}}

@@ -16,7 +16,7 @@ class UserController extends Controller
         }
         else
         {
-            return redirect('/');
+            return view('auth.index');
         }
     }
 
@@ -33,14 +33,13 @@ class UserController extends Controller
         }
         else
         {
-            Session::flash('error','Username atau Password salah');
-            return redirect('/');
+            return redirect('/login')->with('error','Username atau Password salah')->withInput();
         }
     }
     
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/login');
     }
 }

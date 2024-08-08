@@ -2,5 +2,5 @@
 
 @section('content')
     <!-- component -->
-    <h1>Halo Iqbal</h1>
+    <h1>Assalamualaikum, {{ Auth::user()->name }}l</h1>
 @endsection

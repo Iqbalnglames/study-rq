@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="font-regular fixed flex z-20 mb-4 w-[450px] mt-4 ml-2 rounded-lg bg-blue-500 p-4 text-base leading-5 text-white opacity-100">
+<div class="font-regular fixed flex z-20 mb-4 lg:w-[450px] w-96 mt-4 ml-2 rounded-lg bg-blue-500 p-4 text-base leading-5 text-white opacity-100">
   <div class="rounded-full w-6 h-6 text-center inline px-2 font-bold border border-white mr-1">i</div><h1> Study-Rq Updated to Version 1.0.12 <a class="underline hover:font-semibold" href="/changelog">see the changelog</a></h1>
 </div>
 <div

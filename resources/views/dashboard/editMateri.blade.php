@@ -1,8 +1,10 @@
 @extends('layouts.dashboard_layouts')
 
 @section('content')
-<form method="POST" >
+<form action="{{ route('update-materi', $editMateri->id) }}" method="POST"
+enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="space-y-3">
         <div class="flex flex-col">
             <label for="title">Judul Materi</label>
