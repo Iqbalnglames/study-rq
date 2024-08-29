@@ -99,7 +99,7 @@ class TaskController extends Controller
         })->first();
         $classLevels = ClassLevel::all();
 
-        return view('task.TaskExec', compact('taskExec', 'classLevels'));
+        return view('task.taskExec', compact('taskExec', 'classLevels'));
     }
 
     public function answeredTask(Request $request)
@@ -153,21 +153,21 @@ class TaskController extends Controller
     }
 
     public function deleteTask($slug)
-{
-    $questionTitle = QuestionTitle::where('slug', $slug)->first();
+    {
+        $questionTitle = QuestionTitle::where('slug', $slug)->first();
 
-    if (!$questionTitle) {
-        return redirect()->back()->with('error', 'Soal tidak ditemukan');
+        if (!$questionTitle) {
+            return redirect()->back()->with('error', 'Soal tidak ditemukan');
+        }
+
+        $questionTitle->tasks->each(function ($task) {
+            $task->answers()->delete();
+        });
+
+        $questionTitle->tasks()->delete();
+
+        $questionTitle->delete();
+
+        return redirect()->back()->with('success', 'Soal berhasil dihapus');
     }
-
-    $questionTitle->tasks->each(function ($task) {
-        $task->answers()->delete();
-    });
-
-    $questionTitle->tasks()->delete();
-
-    $questionTitle->delete();
-
-    return redirect()->back()->with('success', 'Soal berhasil dihapus');
-}
 }
