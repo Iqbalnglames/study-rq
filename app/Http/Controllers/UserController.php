@@ -23,8 +23,8 @@ class UserController extends Controller
     public function loginAction(Request $request)
     {
         $data = [
-            'username' => $request->input('username'),
-            'password' => $request->input('password')
+            'username' => $request->username,
+            'password' => $request->password
         ];
 
         if(Auth::attempt($data))

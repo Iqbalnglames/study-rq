@@ -7,7 +7,8 @@
     @vite('resources/css/app.css')
     <title>Study Rq | Dashboard</title>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>   
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+    <script src="path/to/jquery.js"></script>
 </head>
 <body class="font-poppins">
     <div class="flex">
@@ -26,8 +27,8 @@
         <h1 class="hidden lg:block" id="text"> {{Auth::user()->name}} </h1>
       </div>
         <div class="mt-8 grid grid-col text-left mx-4">
-          <a 
-          href="/dashboard" 
+          <a
+          href="/dashboard"
           class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-blue-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out">
             <x-icons.adjustments class="inline-block" />
             <span class="hidden lg:inline" id="text">Dashboard</span>
@@ -39,20 +40,27 @@
         <x-icons.academic-cap class="inline-block" />
           <span class="hidden lg:inline" id="text">Materi</span>
         </a>
+          <a
+          href="/dashboard/list-tugas"
+          class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-blue-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
+        >
+        <x-icons.clipboard-check class="inline-block" />
+          <span class="hidden lg:inline" id="text">Tugas</span>
+        </a>
         <a
              href=""
              class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-blue-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
             >
             <x-icons.clipboard-list class="inline-block" />
               <span class="hidden lg:inline" id="text">Laporan</span>
-            </a>      
+            </a>
             <a
             href=""
             class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-blue-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
           >
           <x-icons.calendar class="inline-block" />
             <span class="hidden lg:inline" id="text">Kalender</span>
-          </a>       
+          </a>
           <a
           href="/logout"
           class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-red-500 hover:text-white hover:scale-105 rounded-md transition duration-150 ease-in-out"
@@ -68,7 +76,7 @@
 </div>
   </body>
    <script>
-      const buttonRight = document.getElementById('sideButtonRight')               
+      const buttonRight = document.getElementById('sideButtonRight')
       const navbar = document.getElementById('sideBar')
       const text = document.querySelectorAll('#text')
       buttonRight.addEventListener("click", function(){

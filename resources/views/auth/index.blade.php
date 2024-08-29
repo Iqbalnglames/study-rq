@@ -22,7 +22,7 @@
                     <label for="password" class="block">Password</label>
                     <input type="password" name="password" class="py-2 w-96 border-blue-400 focus:outline-none border-b-2">
                 </div>
-                <button type="submit" onclick="progressBar()" class="bg-blue-300 p-2 overflow-hidden rounded hover:bg-blue-400"><x-icons.login /> Login</button>
+                <button type="submit" onclick="progressBar()" class="bg-blue-300 p-2 overflow-hidden rounded hover:bg-blue-400"><x-icons.login class="inline" /> Login</button>
             </form>
         </div>
         </div>

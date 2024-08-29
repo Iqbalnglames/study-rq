@@ -17,4 +17,9 @@ class Material extends Model
     {
         return $this->belongsTo(ClassLevel::class);
     }
+
+    public function questionTitle()
+    {
+        return $this->hasMany(QuestionTitle::class);
+    }
 }
