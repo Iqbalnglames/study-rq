@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <div
-        id="alert"
+    <div id="alert"
         class="font-regular fixed flex z-20 mb-4 lg:w-[450px] w-96 mt-4 ml-2 rounded-lg bg-blue-500 p-4 text-base leading-5 text-white opacity-100">
         <div class="rounded-full w-6 h-6 text-center inline px-2 font-bold border border-white mr-1">i</div>
-        <h1>Hey there, Study-Rq was Updated to Version 1.4.0 <a class="underline hover:font-semibold" href="/changelog">see the
+        <h1>Hey there, Study-Rq was Updated to Version 1.4.0 <a class="underline hover:font-semibold" href="/changelog">see
+                the
                 changelog</a></h1>
-                <h1 id="close-btn" class="p-2 hover:bg-blue-600 rounded cursor-pointer">x</h1>
+        <h1 id="close-btn" class="p-2 hover:bg-blue-600 rounded cursor-pointer">x</h1>
     </div>
     <div class="relative overflow-hidden bg-cover bg-no-repeat p-12 text-center h-screen"
         style="background-image: url('{{ asset('images/class-bg.jpg') }}'); ">
@@ -35,7 +35,7 @@
         const alert = document.getElementById('alert')
         const clsbtn = document.getElementById('close-btn')
 
-        clsbtn.addEventListener('click', function(){
+        clsbtn.addEventListener('click', function() {
             alert.classList.add('hidden')
         })
     </script>
