@@ -62,7 +62,7 @@ class MateriController extends Controller
         ]);
 
         if ($validate->fails()) {
-            return redirect()->back()->withErrors($validate)->withInput()->with(['error' => 'kolom tidak boleh kosong!']);
+            return redirect()->back()->withErrors($validate)->withInput();
         }
 
         Material::create([

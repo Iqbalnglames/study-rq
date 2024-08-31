@@ -104,13 +104,18 @@ class TaskController extends Controller
 
     public function answeredTask(Request $request)
     {
-        $validate = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'class_level_id' => 'required',
+            'class_level_id' => 'required | numeric',
+            'image' => 'required|image',
+        ], [
+            'name.required' => 'isi kolom nama terlebih dahulu',
+            'class_level_id.numeric' => 'pilih kelas antum terlebih dahulu',
+            'image.required' => 'upload hasil pekerjaan antum',
         ]);
 
-        if ($validate->fails()) {
-            return redirect()->back()->withInput()->with(['error' => 'kolom tidak boleh kosong']);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'kolom tidak boleh kosong');
         }
 
         $image = $request->file('image');

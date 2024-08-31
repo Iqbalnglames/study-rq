@@ -2,7 +2,32 @@
 
 @section('content')
     <div class="m-5 p-5 bg-white rounded border border-gray-200 drop-shadow-lg">
-        @if (session()->has('message'))
+        @if (session()->has('error'))
+            <div id="alert"
+                class="font-regular fixed block w-72 max-w-screen-md rounded-lg right-5 top-5 bg-red-500 px-4 py-4 text-base text-white"
+                data-dismissible="alert">
+
+                <div class="ml-8 mr-12">
+                    <h5 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-white antialiased">
+                        Gagal
+                    </h5>
+                    <p class="mt-2 block font-sans text-base font-normal leading-relaxed text-white antialiased">
+                        @foreach ($errors->all() as $error)
+                            <h1>{{ $error }}</h1>
+                        @endforeach
+                    </p>
+                </div>
+                <div data-dismissible-target="alert" data-ripple-dark="true" onclick="closeAlert()"
+                    class="absolute top-3 right-3 w-max rounded-lg transition-all hover:bg-white hover:bg-opacity-20">
+                    <div role="button" class="w-max rounded-lg p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        @elseif(session()->has('message'))
             <div id="alert"
                 class="font-regular fixed block w-72 max-w-screen-md rounded-lg right-5 top-5 bg-green-500 px-4 py-4 text-base text-white"
                 data-dismissible="alert">
@@ -32,18 +57,16 @@
                     </div>
                 </div>
             </div>
-        @elseif(session()->has('error'))
-            alert('{{ session('error') }}', 'GAGAL!');
         @endif
         <form method="POST" action="{{ route('kirim-tugas') }}" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="name">Nama Santri: </label>
-                <input type="text" name="name" class="outline-none border-b border-blue-500 focus:border-b-2"
+                <input type="text" name="name" value="{{old('name')}}" class="outline-none border-b border-blue-500 focus:border-b-2"
                     placeholder="nama peserta">
             </div>
             <div class="mt-2">
-                <select name="class_level_id" class="w-50 p-2 bg-white border border-slate-300 rounded-sm">
+                <select name="class_level_id" class="w-50 p-2 bg-white border border-slate-300 rounded-sm" >
                     <option>--Pilih kelas--</option>
                     @foreach ($classLevels as $classes)
                         <option value="{{ $classes->id }}">{{ $classes->name }}</option>
@@ -70,7 +93,7 @@
                                 @foreach ($task->answers as $answer)
                                     <input type="hidden" value="{{ $answer->id }}" name="answer_id">
                                 @endforeach
-                                <input type="file" id="inputImage" name="image" class="hidden" multiple>
+                                <input type="file" value="{{old('image')}}" id="inputImage" name="image" class="hidden" multiple>
                             </div>
                             <div>
                                 <p id="fileName"></p>
